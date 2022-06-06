@@ -2,6 +2,7 @@
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const Webpack           = require('webpack');
+const os                = require('os');
 
 const PRODUCTION = process.env.NODE_ENV === 'staging' || process.env.NODE_ENV === 'production';
 
@@ -19,7 +20,7 @@ module.exports = {
   devServer: {
     contentBase: 'public/',
     historyApiFallback: true,
-    host: '0.0.0.0'
+    host: os.release().toLowerCase().includes('microsoft') ? 'localhost' : '0.0.0.0'
   },
   mode: PRODUCTION ? 'production' : 'development',
   module: {

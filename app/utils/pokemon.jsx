@@ -7,7 +7,13 @@ import { BOX_SIZE } from '../components/box';
 import { padding }  from './formatting';
 
 function sortByGeneration (captureA, captureB) {
+  const formA = captureA.pokemon.form || '';
+  const formB = captureB.pokemon.form || '';
+
   if (captureA.pokemon.game_family.generation === captureB.pokemon.game_family.generation) {
+    if (formA > formB) return 1;
+    if (formA < formB) return -1;
+
     if (captureA.pokemon.dex_number > captureB.pokemon.dex_number) {
       return 1;
     }

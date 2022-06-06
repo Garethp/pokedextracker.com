@@ -8,7 +8,7 @@ import { useDeferredRender } from '../hooks/use-deferred-render';
 
 export const BOX_SIZE = 30;
 
-export function Box ({ captures, deferred }) {
+export function Box ({ captures, deferred, sortByGeneration }) {
   const render = useDeferredRender(!deferred);
 
   const empties = useMemo(() => Array.from({ length: BOX_SIZE - captures.length }).map((_, i) => i), [captures]);
@@ -47,6 +47,10 @@ export function Box ({ captures, deferred }) {
     }
   }
 
+  if (sortByGeneration === true) {
+    title = `Generation ${firstPokemon.game_family.generation}: ${title}`
+  }
+
   if (!render) {
     return null;
   }
@@ -66,10 +70,12 @@ export function Box ({ captures, deferred }) {
 }
 
 Box.defaultProps = {
-  deferred: false
+  deferred: false,
+  sortByGeneration: false,
 };
 
 Box.propTypes = {
   captures: PropTypes.arrayOf(PropTypes.object).isRequired,
-  deferred: PropTypes.bool
+  deferred: PropTypes.bool,
+  sortByGeneration: PropTypes.bool,
 };

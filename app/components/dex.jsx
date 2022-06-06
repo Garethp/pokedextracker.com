@@ -32,6 +32,7 @@ export function Dex ({ hideCaught, onScrollButtonClick, query, setHideCaught, se
         captures={box}
         deferred={i > DEFER_CUTOFF}
         key={box[0].pokemon.id}
+        sortByGeneration={sortByGeneration}
       />
     ));
   }, [boxes, sortByGeneration]);
